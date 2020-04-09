@@ -1,0 +1,18 @@
+$logo-width: 114px;
+
+$background_image: url("../img/m-h-night.jpg") center/cover no-repeat;
+
+$colors:(
+    background-color: #1c1e2a,
+    secondary-color:#383d4f,
+    text-title-color: #ffffff,
+    highlight-color: #ff4d30,
+    body-color: rgba(259,259,259,0.75),
+    header-color: #fff,
+    button-color: #e4ae00,
+    gradient-color: linear-gradient(to right, #dca101,#952b4f)
+);
+
+$main-font: 'Fresca', sans-serif;
+$heading-font: 'Source Sans Pro', sans-serif;
+$secondary-font: 'Hind', sans-serif;
