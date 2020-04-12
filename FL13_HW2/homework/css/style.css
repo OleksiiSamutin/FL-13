@@ -81,6 +81,7 @@
 
 
     .text::after {
+        display: inline-block;
         content: "New";
         font-size: 8px;
         vertical-align: super;
