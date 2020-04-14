@@ -1,0 +1,253 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+a{
+    text-decoration: none;
+}
+body {
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    min-width: 900px;
+    max-height: 1600px;
+    color: #777;
+}
+
+.btn {
+    padding: 16px 26px;
+    color: #777;
+    display: inline-block;
+    font-weight: 900;
+    border-style: none;
+    border-radius: 24px;
+    letter-spacing: 0.15em;
+    font-size: 10px;
+    font-family: 'Merriweather', serif;
+    transition: background .2s linear;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color: #bfba55;
+    color: #fff;
+
+}
+
+.btn--header {
+
+    background-color: #fff;
+    text-transform: uppercase;
+    word-spacing: 0.3em;
+
+}
+
+.btn--section{
+    font-size: 12px;
+    border: 1px solid #cccccc;
+    word-spacing: 0.01em;
+}
+
+.btn--section:hover{
+    background-color: #cccccc;
+}
+.top__header {
+    top: 0;
+    position: sticky;
+    padding-left: 14.4%;
+    padding-right: 14.7%;
+    height: 86px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 3;
+}
+
+.logo_text {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 18px;
+    color: #000;
+    opacity: .75;
+    letter-spacing: 0.2em;
+    word-spacing: 2px;
+
+}
+.nav__link{
+    transition: color .2s linear;
+}
+.nav__link {
+    font-weight: normal;
+    color: #777;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 41px;
+    letter-spacing: 0.12em;
+}
+
+.nav__link:visited {
+    color: #bfba55;
+}
+
+.nav__link:hover{
+    color: #000;
+    font-weight: bold;
+}
+.nav__link:last-child {
+    margin-right: 0;
+
+}
+
+.header__img {
+    background: url('../img/home-bg.jpg') top no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}
+
+.header__img::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-color: #000;
+    opacity: .75;
+    z-index: 1;
+}
+
+.header__wrap {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.header__title {
+    font-size: 60px;
+    color: #fff;
+    word-spacing: 0.09em;
+}
+
+.header__subtitle {
+    font-size: 12px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    color: #bfba55;
+    letter-spacing: 0.2em;
+    word-spacing: 0.0002em;
+}
+
+.section {
+    margin: 115px auto;
+    margin-bottom: 112px;
+    display: flex;
+    flex-direction: column;
+    width: 948px;
+
+}
+
+.section__item{
+    padding-bottom: 62px;
+    margin-bottom: 86px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.section__item:nth-last-child(1){
+    border: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.section_card_img {
+    width: 100%;
+    margin-bottom: 34px;
+
+}
+
+.section__heading {
+    margin-bottom: 12px;
+    font-size: 25px;
+    color: #000;
+    font-weight: 900;
+    word-spacing: 0.15em;
+
+}
+.section__subheading{
+    margin-bottom: 24px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+
+
+}
+.author__img{
+    margin-right: 8px;
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+
+}
+.subheading_text span{
+    font-family: serif;
+    font-size: 16px;
+    padding-right: 18px;
+}
+
+.section__main__text{
+    margin-bottom: 38px;
+    word-spacing: 0.152em;
+    line-height: 1.8;
+
+}
+
+.container{
+    width: 100%;
+    max-width: 948px;
+    margin: 0 auto;
+}
+.footer{
+    background-color: #000;
+}
+
+.footer__wrap{
+    flex-wrap: nowrap;
+    padding: 98px 0 88px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    align-content: flex-end;
+}
+
+.footer__heading{
+    margin-bottom: 15px;
+    font-size: 26px;
+    color: #fff;
+    font-weight: 900;
+
+}
+
+.footer__text{
+    margin-bottom: 26px;
+    width: 75%;
+    line-height: 1.8em;
+    word-spacing: 0.1em;
+}
+
+
+
+.about{
+    width: 74%;
+}
+
+.footer_adress_item{
+    margin-bottom: 20px;
+    font-family: serif;
+    font-size: 16px;
+    word-spacing: 0.2em;
+
+}
