@@ -320,7 +320,7 @@ ul {
   }
 
   .header h2 {
-    margin-top: 37px;
+    margin-top: 47px;
   }
 
   .navigation {
@@ -421,7 +421,8 @@ ul {
     }
 
     .header {
-      padding: 0;
+      padding:0;
+      padding-bottom: 22px;
       margin-bottom: 20px;
     }
   }
