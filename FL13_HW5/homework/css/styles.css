@@ -34,7 +34,7 @@ button {
   display: grid;
   grid-template-columns: 76% 24%;
   gap: 15px;
-  grid-template-rows: 73px 375px 445px auto 70px;
+  grid-template-rows: 63px 375px 445px auto 70px;
   grid-template-areas: "header header"
     "main aside1"
     "main aside2"
@@ -47,6 +47,7 @@ button {
 }
 
 .header {
+  margin-top: -10px;
   background-color: #162b4d;
   grid-area: header;
   color: #fff;
@@ -58,6 +59,7 @@ button {
 
 .footer {
   grid-area: footer;
+  margin-bottom: -10px;
 
 }
 
@@ -328,18 +330,20 @@ ul {
     display: grid;
     grid-template-columns: 60% 34%;
     gap: 15px;
-    grid-template-rows: 120px auto auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
 
 
   }
 
   .header {
-    height: 95px;
-    padding-bottom: 20px;
+
+    padding: 40px 0 20px;
 
     flex-direction: column-reverse;
   }
-
+  .logo{
+    margin-top: 20px;
+  }
   .header h2 {
     margin-top: 47px;
   }
@@ -351,6 +355,7 @@ ul {
 
   .burger {
     margin-top: 25px;
+
     display: block;
   }
 
