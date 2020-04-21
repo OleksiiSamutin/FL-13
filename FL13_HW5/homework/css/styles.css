@@ -375,7 +375,9 @@ ul {
     padding-left: 13px;
     text-align: center;
   }
-
+  .item-description .text {
+    flex-basis: 0;
+  }
   .sidebar>div {
     padding: 14px 20px 0;
   }
