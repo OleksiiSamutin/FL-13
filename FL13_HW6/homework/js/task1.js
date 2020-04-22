@@ -4,7 +4,7 @@ let check = Number(inputCheck);
 let percentage = Number(inputPercentage);
 const maxPercentage = 100;
 function checkCorrectInputNumber(string) {
-    return !isNaN(string) && !isNaN(parseFloat(string))
+    return !Number.isNaN(string);
 }
 if (checkCorrectInputNumber(inputCheck) &&
     checkCorrectInputNumber(inputPercentage) &&
