@@ -22,7 +22,8 @@ outer:while (playAgain && userInput){
         random number is ${randomNumber}`,'')
         if (Number(userGuessNumber) === randomNumber){
             totalPrize += possiblePrize
-            let userChoice = confirm(`Congratulation, you won!   Your prize is: ${possiblePrize}$. Do you want to continue?’`)
+            let userChoice = confirm(`Congratulation, you won!
+             Your prize is: ${possiblePrize}$. Do you want to continue?’`)
             if (userChoice){
                 max*=2
                 randomNumber = genRandom(min, max)
