@@ -9,7 +9,7 @@ function checkCorrectInputNumber(string) {
 if (checkCorrectInputNumber(inputCheck) &&
     checkCorrectInputNumber(inputPercentage) &&
     check > 0 && percentage >= 0 && percentage < maxPercentage) {
-        const tipAmount = check * percentage/maxPercentage
+        const tipAmount = Number((check * percentage/maxPercentage).toFixed(2))
         const totalSum = check + tipAmount;
         alert(`Check number: ${check}
                Tip: ${percentage}
