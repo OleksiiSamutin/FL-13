@@ -114,11 +114,11 @@ console.log(makeListFromRange([3,3]))
 const fruits = [{ name: 'apple', weight: 0.5 }, { name: 'pineapple', weight: 2 }];
 
 console.log(getArrayOfKeys(fruits, 'name')); // returns [‘apple’, ‘pineapple’]
-// console.log(substitute([58, 14, 48, 12, 31, 19, 10])) // returns [58, '*', 48, '*', 31, '*', 10]
-// const date = new Date(2020, 0, 2);
-// console.log(getPastDay(date, 1)); // 1, (1 Jan 2020)
-// console.log(getPastDay(date, 2)); // 31, (31 Dec 2019)
-// console.log(getPastDay(date, 365)); // 2, (2 Jan 2019)
+console.log(substitute([58, 14, 48, 12, 31, 19, 10])) // returns [58, '*', 48, '*', 31, '*', 10]
+const date = new Date(2020, 0, 2);
+console.log(getPastDay(date, 1)); // 1, (1 Jan 2020)
+console.log(getPastDay(date, 2)); // 31, (31 Dec 2019)
+console.log(getPastDay(date, 365)); // 2, (2 Jan 2019)
 
-// console.log(formatDate(new Date('6/15/2019 09:15:00'))) // "2018/06/15 09:15"
-// console.log(formatDate(new Date())) // "2020/04/07 12:56" // gets current local time
+console.log(formatDate(new Date('6/15/2019 09:15:00'))) // "2018/06/15 09:15"
+console.log(formatDate(new Date())) // "2020/04/07 12:56" // gets current local time
