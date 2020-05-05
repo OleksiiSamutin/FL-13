@@ -1,3 +1,8 @@
+const SECONDS_IN_MINUTE = 3600;
+const HOURS_IN_DAY = 24;
+const MS_IN_SECOND = 1000;
+const _10 = 10;
+const _20 = 20;
 function convert(...args) {
     let result = [];
     for (let i = 0; i < args.length; i++) {
@@ -71,12 +76,12 @@ function getArrayOfKeys(arrayOfObjects, key) {
 
 function substitute(array) {
     return mapArray(array, function (el) {
-        return el > 10 && el < 20 ? '*' : el;
+        return el > _10 && el < _20 ? '*' : el;
     })
 }
 
 function getPastDay(date, dayAgo) {
-    let oneDay = 3600 * 24 * 1000;
+    let oneDay = SECONDS_IN_MINUTE * HOURS_IN_DAY * MS_IN_SECOND;
     let result = new Date(date - dayAgo * oneDay)
     return result.getDate();
 }
@@ -85,40 +90,8 @@ function formatDate(date) {
     let year = date.getFullYear();
     let month = date.getMonth();
     let day = date.getDate();
-    let hour = (date.getHours() < 10 ? '0' : '') + date.getHours();
+    let hour = (date.getHours() < _10 ? '0' : '') + date.getHours();
     let minutes = date.getMinutes();
 
     return `${year}/${month}/${day} ${hour}:${minutes}`;
 }
-//Testing
-
-executeforEach([1, 2, 3], function (el) {
-    console.log(el * 2)
-}) // 2 4 6
-
-console.log(mapArray([2, '5', 8], function (el) {
-    return el + 3
-})) // returns [5, 8, 11])
-
-console.log(filterArray(
-    [2, 5, 8], function (el) {
-        return el % 2 === 0;
-    }));
-
-console.log(containsValue([2, 5, 8], 2)) // returns true
-console.log(containsValue([12, 4, 6], 5)) // returns false
-console.log(flipOver('hey world')) // 'dlrow yeh'
-console.log(makeListFromRange([2, 7])) // [2, 3, 4, 5, 6, 7])
-console.log(makeListFromRange([3,3]))
-
-const fruits = [{ name: 'apple', weight: 0.5 }, { name: 'pineapple', weight: 2 }];
-
-console.log(getArrayOfKeys(fruits, 'name')); // returns [‘apple’, ‘pineapple’]
-console.log(substitute([58, 14, 48, 12, 31, 19, 10])) // returns [58, '*', 48, '*', 31, '*', 10]
-const date = new Date(2020, 0, 2);
-console.log(getPastDay(date, 1)); // 1, (1 Jan 2020)
-console.log(getPastDay(date, 2)); // 31, (31 Dec 2019)
-console.log(getPastDay(date, 365)); // 2, (2 Jan 2019)
-
-console.log(formatDate(new Date('6/15/2019 09:15:00'))) // "2018/06/15 09:15"
-console.log(formatDate(new Date())) // "2020/04/07 12:56" // gets current local time
