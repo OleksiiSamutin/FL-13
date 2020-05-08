@@ -1,0 +1,60 @@
+/* TODO: your styles goes here*/
+p {
+    margin: 0;
+    padding: 0;
+}
+.icon{
+    padding-bottom: 5px;
+    vertical-align: middle;
+    padding-left: 5px;
+}
+
+.folder{
+    color: #edbc0b;
+}
+.file{
+ color: #bbbbbb;
+}
+.folder-block .folder-block{
+    margin-left: 10px;
+}
+.text{
+    display: inline-block;
+}
+
+li:hover, .folder-hover:hover{
+    background-color:#efefef;
+    cursor: pointer;
+}
+.notWork:hover {
+    cursor: none;
+    background-color: #000;
+}
+.hide{
+    display: none;
+}
+body {
+    position: relative;
+}
+.ulOutside {
+    color: #666;
+}
+#root{
+    margin: 0 auto;
+    width: 400px;
+    box-shadow: 3px 3px 9px 0px rgba(0,0,0,0.75);
+    border-radius: 4px;
+    padding: 26px 13px 26px 55px;
+
+}
+ul {
+    background-color: #fff;
+    list-style-type: none;
+    padding: 10px;
+    box-shadow: 3px 3px 9px 0px rgba(0,0,0,0.75);
+    width: 75px;
+    border-radius: 2px;
+    border-top-left-radius: 0px;
+    position: absolute;
+    z-index: 5;
+}
