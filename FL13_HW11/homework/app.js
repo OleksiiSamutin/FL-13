@@ -71,13 +71,11 @@ document.addEventListener('contextmenu', function(event) {
   let x = event.clientX;
   let y = event.clientY;
   let ul = document.querySelector('ul')
-  console.log(event.target)
   if (document.querySelector('ul')){
     document.body.removeChild(ul)
   }
   ul = createMenu(x,y)
   document.body.appendChild(ul);
-  console.log(event.target);
   if (event.target.tagName === 'HTML' || event.target.tagName === 'BODY' || event.target.id==='root' ||
   event.target.className === 'empty'){
     ul.style.pointerEvents = 'none';
@@ -96,7 +94,6 @@ document.addEventListener('contextmenu', function(event) {
     deleteButton.addEventListener('click', function(){
       eventTarget.parentNode.removeChild(eventTarget);
       if (parentEventTarget.classList.contains('canOpen')) {
-        console.log(eventTarget.children.length)
         if (parentEventTarget.children.length === 1){
           let emptyFolder = document.createElement('p');
           let div = document.createElement('div');
@@ -118,9 +115,6 @@ document.addEventListener('contextmenu', function(event) {
       } else {
         eventTarget.firstChild.lastChild.select();
       }
-
-      console.log('debugging');
-      console.log(eventTarget)
     })
 
   }
@@ -215,13 +209,13 @@ obxodDereva(data, rootNode);
 
 let folderHover = document.querySelectorAll('.folder-hover');
 let folder = document.querySelectorAll('.text');
-folder.forEach = (txt =>{
+folder.forEach = txt => {
   txt.onclick = function(event){
     alert(event.target);
   }
-})
+}
 folderHover.forEach(folder => {
-  folder.onclick = function (event) {
+  folder.onclick = function () {
     if (this.parentElement.classList.contains('canOpen')){
       if (!this.parentElement.classList.contains('open')){
 
@@ -233,7 +227,6 @@ folderHover.forEach(folder => {
         this.parentElement.classList.add('open');
       } else {
         this.firstChild.innerHTML = 'folder';
-        console.log(event.target.firstChild);
         this.parentElement.classList.remove('open');
         for (let i = 1; i <this.parentElement.children.length; i++){
           this.parentElement.children[i].style = 'display: none';
