@@ -16,7 +16,12 @@ p {
  color: #bbbbbb;
 }
 .folder-block .folder-block{
-    margin-left: 10px;
+    margin-left: 40px;
+}
+.empty {
+    font-style: italic;
+    margin-left: 5px;
+    pointer-events: none;
 }
 .text{
     display: inline-block;
@@ -26,19 +31,13 @@ li:hover, .folder-hover:hover{
     background-color:#efefef;
     cursor: pointer;
 }
-.notWork:hover {
-    cursor: none;
-    background-color: #000;
-}
 .hide{
     display: none;
 }
 body {
     position: relative;
 }
-.ulOutside {
-    color: #666;
-}
+
 #root{
     margin: 0 auto;
     width: 400px;
@@ -46,6 +45,15 @@ body {
     border-radius: 4px;
     padding: 26px 13px 26px 55px;
 
+}
+input {
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+
+    background-color: inherit;
+    color: black;
+    border: 0;
 }
 ul {
     background-color: #fff;

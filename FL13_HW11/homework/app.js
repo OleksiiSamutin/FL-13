@@ -77,18 +77,71 @@ document.addEventListener('contextmenu', function(event) {
   }
   ul = createMenu(x,y)
   document.body.appendChild(ul);
-  if (event.target.tagName === 'HTML' || event.target.tagName === 'BODY' ||
-  event.target.id==='root'){
+  console.log(event.target);
+  if (event.target.tagName === 'HTML' || event.target.tagName === 'BODY' || event.target.id==='root' ||
+  event.target.className === 'empty'){
     ul.style.pointerEvents = 'none';
     ul.style.color = '#cfcfcf';
+  } else {
+    let eventTarget;
+    let parentEventTarget;
+    if (event.target.parentElement.classList.contains('folder-block')){
+      eventTarget = event.target.parentElement;
+      parentEventTarget = event.target.parentElement.parentElement;
+    } else {
+      eventTarget = event.target.parentElement.parentElement;
+      parentEventTarget = event.target.parentElement.parentElement.parentElement;
+    }
+    let deleteButton = document.querySelector('#delete');
+    deleteButton.addEventListener('click', function(){
+      eventTarget.parentNode.removeChild(eventTarget);
+      if (parentEventTarget.classList.contains('canOpen')) {
+        console.log(eventTarget.children.length)
+        if (parentEventTarget.children.length === 1){
+          let emptyFolder = document.createElement('p');
+          let div = document.createElement('div');
+          div.appendChild(emptyFolder);
+          emptyFolder.innerHTML = 'Folder is empty';
+          emptyFolder.classList.add('empty')
+          parentEventTarget.appendChild(div);
+        }
+      }
+    })
+    let renameButton = document.querySelector('#rename');
+    renameButton.addEventListener('click', function(){
+      eventTarget.firstChild.lastChild.disabled = false;
+      eventTarget.firstChild.lastChild.focus();
+      if (eventTarget.firstChild.firstChild.classList.contains('file')){
+        let value = eventTarget.firstChild.lastChild.value;
+        eventTarget.firstChild.lastChild.setSelectionRange(0,value.indexOf('.'));
+
+      } else {
+        eventTarget.firstChild.lastChild.select();
+      }
+
+      console.log('debugging');
+      console.log(eventTarget)
+    })
+
   }
   return false;
 }, false);
 document.addEventListener('click', function(){
   let element = document.querySelector('ul');
+
+  if(document.activeElement.tagName !== 'INPUT'){
+    let input = document.querySelectorAll('input');
+    input.forEach(inp => {
+      inp.disabled = true;
+    })
+  }
+
+
   if (document.querySelector('ul')){
     element.parentNode.removeChild(element);
+
   }
+
 })
 function createFoder(structureObj, parentFolder, empty = false) {
   let folderBlock = document.createElement('div');
@@ -104,14 +157,15 @@ function createFoder(structureObj, parentFolder, empty = false) {
 
     folderHover.style = parentFolder === rootNode ? 'display: block' : 'display: none';
     let icon = document.createElement('i');
-    let text = document.createElement('span');
+    let text = document.createElement('input');
+    text.disabled = true;
     folderBlock.className = 'folder-block';
     folderBlock.classList.add('canOpen');
     folderHover.className = 'folder-hover';
     icon.className = 'material-icons icon folder';
     text.className = 'text';
     icon.innerHTML = 'folder';
-    text.innerHTML = structureObj['title'];
+    text.value = structureObj['title'];
     folderHover.appendChild(icon);
     folderHover.appendChild(text);
     folderBlock.appendChild(folderHover);
@@ -126,13 +180,14 @@ function createFile(structureObj, parentFolder) {
   let folderHover = document.createElement('p');
   folderHover.style = parentFolder === rootNode ? 'display: block' : 'display: none';
   let icon = document.createElement('i');
-  let text = document.createElement('span');
+  let text = document.createElement('input');
+  text.disabled = true;
   folderBlock.className = 'folder-block';
   folderHover.className = 'folder-hover';
   icon.className = 'material-icons icon file';
   text.className = 'text';
   icon.innerHTML = 'insert_drive_file';
-  text.innerHTML = structureObj['title'];
+  text.value = structureObj['title'];
   folderHover.appendChild(icon);
   folderHover.appendChild(text);
   folderBlock.appendChild(folderHover);
