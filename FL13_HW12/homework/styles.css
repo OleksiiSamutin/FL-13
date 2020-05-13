@@ -1,0 +1,39 @@
+.btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: yellow;
+}
+.edit {
+    padding: 2px 10px;
+    background-color: blue;
+    margin-left: 5px;
+    color: white;
+}
+a {
+    text-decoration: none;
+}
+#static{
+    display: inline-block;
+    flex-basis: 50%;
+}
+#preview {
+    flex-basis: 50%;
+    order: 3;
+}
+#root {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#dynamic{
+    display: inline-block;
+    width: 400px;
+}
+input {
+    display: block;
+}
+form {
+    margin: 0 auto;
+}
