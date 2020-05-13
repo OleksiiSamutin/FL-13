@@ -11,8 +11,6 @@ function createEditBtn(id){
     return btn;
 }
 function renderStaticSection(){
-    const baseURL = new URL('./index.html','http://127.0.0.1:5500/index.html');
-
     let staticDiv = document.createElement('div');
     staticDiv.id = 'static';
     staticDiv.appendChild(createList());
@@ -106,13 +104,21 @@ function createForm(id = null){
             image:inputForImage.value,
             plot:inputForPlot.value}
         if (id){
-            alert(id);
+
             loadBookToStorage(editBook,id);
         } else{
-            alert('its have work')
             loadBookToStorage(editBook);
         }
+        setTimeout(function(){
+            alert('Book succesfully updated');
+        }, 300);
 
+        root.firstChild.replaceChild(createList(), root.firstChild.firstChild);
+        let state ={
+            page: `/index.html?id=${id}#preview`
+        }
+        history.pushState(state, '', state.page);
+        renderPreviewSection(id);
     })
     form.appendChild(labelForName);
     form.appendChild(inputForName);
@@ -153,7 +159,9 @@ function renderPreviewSection(id){
 
 let ol = document.querySelector('ol');
 function updatestate(state){
+    console.log(state);
     let currentLocation = new URL(window.location.href)
+    console.log(currentLocation)
     if (!state){
         return
     }
@@ -169,7 +177,7 @@ function updatestate(state){
     } else if (currentLocation.hash === '#add'){
         createForm();
     }
-    console.log(currentLocation);
+    // console.log(currentLocation);
     // if (currentLocation.hash === '#preview') {
     //     renderPreviewSection(currentLocation.searchParams.get('id'));
     // } else if (currentLocation.hash === '#edit'){
@@ -180,6 +188,7 @@ function updatestate(state){
 window.addEventListener('popstate', function(e){
     updatestate(e.state);
 })
+
 ol.addEventListener('click',function(e){
     let state;
     if (e.target.tagName !== 'A') {
@@ -193,39 +202,5 @@ ol.addEventListener('click',function(e){
     console.log();
     e.preventDefault();
 })
-// a.forEach(item => item.addEventListener('click', event => event.preventDefault))
-
-// function locationHashChanged() {
-//     alert('it work')
-//     let currentLocation = new URL(window.location.href);
-//     // alert(currentLocation.hash);
-
-// }
-
-
-// window.addEventListener('locationchange', function(){
-//     console.log('location changed!');
-//     let currentLocation = new URL(window.location.href);
-//     // alert(currentLocation.hash);
-
-// })
-// window.addEventListener('hashchange', function(){
-//     console.log('location changed!');
-// })
-
-// window.onhashchange = locationHashChanged;
-// window.addEventListener('popstate', function(event){
-//     alert('it work')
-//     let currentLocation = new URL(window.location.href);
-//     // alert(currentLocation.hash);
-//     if (currentLocation.hash === '#preview') {
-//         renderPreviewSection(currentLocation.searchParams.get('id'));
-//     } else if (currentLocation.hash === '#edit'){
-//         createForm();
-//     }
-// })
-
-// window.addEventListener('popstate', function (event) {
-// 	// Log the state data to the console
-// 	console.log(event.state);
-// });
+window.addEventListener('load',updatestate);
+window.addEventListener('hashchange',updatestate);
