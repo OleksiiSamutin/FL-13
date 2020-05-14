@@ -1,7 +1,6 @@
 const root = document.getElementById('root');
 
 renderStaticSection();
-
 function createEditBtn(id){
     let btn = document.createElement('a');
     btn.innerHTML = 'edit';
@@ -56,7 +55,7 @@ function createForm(id = null){
         root.removeChild(root.childNodes[root.childNodes.length-1]);
     }
     const form = document.createElement('form');
-    const cancelBtn = document.createElement('input');
+    const cancelBtn = document.createElement('input')
     const saveBtn = document.createElement('input');
     const labelForName = document.createElement('label');
     const labelForAuthor = document.createElement('label');
@@ -82,23 +81,25 @@ function createForm(id = null){
     inputForAuthor.required = true;
     inputForImage.required = true;
     inputForPlot.required = true;
+    cancelBtn.classList.add('btn', 'cancel');
+    saveBtn.classList.add('btn', 'save');
     cancelBtn.type = 'reset';
     cancelBtn.value = 'cancel';
     saveBtn.type = 'submit';
     saveBtn.value = 'save';
     saveBtn.id = 'save';
-
+    let currentBook;
     if (id){
-        const currentBook = recieveBookFromStorage(id);
+        currentBook = recieveBookFromStorage(id);
         inputForName.value = currentBook.name;
         inputForAuthor.value = currentBook.author;
         inputForImage.value = currentBook.image;
         inputForPlot.value = currentBook.plot;
 
-
     }
     saveBtn.addEventListener('click', function(e){
         e.preventDefault();
+
         let editBook = {name:inputForName.value,
             author:inputForAuthor.value,
             image:inputForImage.value,
@@ -106,8 +107,11 @@ function createForm(id = null){
         if (id){
 
             loadBookToStorage(editBook,id);
+            renderPreviewSection(id);
         } else{
             loadBookToStorage(editBook);
+            renderPreviewSection(localStorage.length-1);
+            id = localStorage.length-1;
         }
         setTimeout(function(){
             alert('Book succesfully updated');
@@ -118,7 +122,23 @@ function createForm(id = null){
             page: `/index.html?id=${id}#preview`
         }
         history.pushState(state, '', state.page);
-        renderPreviewSection(id);
+
+
+    })
+    cancelBtn.addEventListener('click',function(event){
+        event.preventDefault();
+        if (confirm('Discard changes?')){
+            if (id){
+                inputForName.value = currentBook.name;
+                inputForAuthor.value = currentBook.author;
+                inputForImage.value = currentBook.image;
+                inputForPlot.value = currentBook.plot;
+            }
+
+            window.history.back();
+        } else{
+            return;
+        }
     })
     form.appendChild(labelForName);
     form.appendChild(inputForName);
@@ -159,16 +179,13 @@ function renderPreviewSection(id){
 
 let ol = document.querySelector('ol');
 function updatestate(state){
-    console.log(state);
     let currentLocation = new URL(window.location.href)
-    console.log(currentLocation)
     if (!state){
-        return
-    }
-    if (window.location.href.split(currentLocation.origin)[1]=== '/index.html'){
+
         if (root.childNodes.length >1){
             root.removeChild(root.childNodes[root.childNodes.length-1]);
         }
+        return
     }
     if (currentLocation.hash === '#preview') {
         renderPreviewSection(currentLocation.searchParams.get('id'));
@@ -177,13 +194,6 @@ function updatestate(state){
     } else if (currentLocation.hash === '#add'){
         createForm();
     }
-    // console.log(currentLocation);
-    // if (currentLocation.hash === '#preview') {
-    //     renderPreviewSection(currentLocation.searchParams.get('id'));
-    // } else if (currentLocation.hash === '#edit'){
-    //     createForm();
-    // }
-
 }
 window.addEventListener('popstate', function(e){
     updatestate(e.state);
