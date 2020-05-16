@@ -1,0 +1,10 @@
+.text {
+    font-size: 1.42em;
+}
+.jumbotron__heading{
+    font-size: 3.2em;
+    margin-bottom: 30px;
+}
+.btn.btn-orange{
+    background-color: #ff7f50;
+}

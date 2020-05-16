@@ -1,6 +1,15 @@
 const root = document.getElementById('root');
 
 renderStaticSection();
+function validURL(myURL) {
+    let pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+    '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.?)+[a-z]{2,}|'+ // domain name
+    '((\\d{1,3}\\.){3}\\d{1,3}))'+ // ip (v4) address
+    '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ //port
+    '(\\?[;&amp;a-z\\d%_.~+=-]*)?'+ // query string
+    '(\\#[-a-z\\d_]*)?$','i');
+    return pattern.test(myURL);
+ }
 function createEditBtn(id){
     let btn = document.createElement('a');
     btn.innerHTML = 'edit';
@@ -97,9 +106,13 @@ function createForm(id = null){
         inputForPlot.value = currentBook.plot;
 
     }
-    saveBtn.addEventListener('click', function(e){
-        e.preventDefault();
+    form.addEventListener('submit', function(e){
 
+        if (!validURL(window['image'].value)){
+            console.log(this.ValidityState.valid);
+            window['image'].setCustomValidity('The url for image is not correct');
+            return;
+        }
         let editBook = {name:inputForName.value,
             author:inputForAuthor.value,
             image:inputForImage.value,
@@ -113,6 +126,7 @@ function createForm(id = null){
             renderPreviewSection(localStorage.length-1);
             id = localStorage.length-1;
         }
+
         setTimeout(function(){
             alert('Book succesfully updated');
         }, 300);
