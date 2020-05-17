@@ -106,7 +106,7 @@ function createForm(id = null){
         inputForPlot.value = currentBook.plot;
 
     }
-    form.addEventListener('submit', function(e){
+    form.addEventListener('submit', function(){
 
         if (!validURL(window['image'].value)){
             console.log(this.ValidityState.valid);
