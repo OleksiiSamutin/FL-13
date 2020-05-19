@@ -1,8 +1,8 @@
-.text {
+.header__text {
     font-size: 1.42em;
 }
-.jumbotron__heading{
-    font-size: 3.2em;
+.header__heading{
+    font-size: 3.09em;
     margin-bottom: 30px;
 }
 .btn.btn-orange{
