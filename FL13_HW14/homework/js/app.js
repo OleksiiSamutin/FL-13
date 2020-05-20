@@ -5,79 +5,80 @@ const _failedHomeworksLimit = Symbol('failedHomeworksLimit');
 const _studentsList = Symbol('studentsList');
 class Student {
   constructor(name, email) {
-    this[_name] = name;
-    this[_email] = email;
-    this[_homeworkResults] = [];
+    let _name = name;
+    let _email = email;
+    let _homeworkResults = [];
+
+  this.getName = function(){
+    return _name;
   }
-  getName() {
-    return this[_name];
+  this.getEmail = function(){
+    return _email;
   }
-  getEmail() {
-    return this[_email];
+  this.addHomeworkResult = function(topic, success) {
+    _homeworkResults.push({ topic, success });
   }
-  addHomeworkResult(topic, success) {
-    this[_homeworkResults].push({ topic, success });
-  }
-  getHomeworkResults() {
-    return this[_homeworkResults];
+  this.getHomeworkResults = function() {
+    return _homeworkResults;
   }
 }
+}
+
 
 class FrontendLab {
     constructor(students,failedLimit){
-        this[_studentsList] = students;
-        this[_failedHomeworksLimit] = failedLimit;
-        this[_homeworkResults] = [];
-    }
-    printStudentsList(){
+        let _studentsList = students;
+        let _failedHomeworksLimit = failedLimit;
+        let _homeworkResults = [];
+
+    this.printStudentsList = function(){
         //iterating through each student
-        for (let i = 0; i < this[_studentsList].length; i++){
-            let currentStudentEmail = this[_studentsList][i].email;
+        for (let i = 0; i < _studentsList.length; i++){
+            let currentStudentEmail = _studentsList[i].email;
             let currentStudentHomeworksResults = [];
             //iterating through each homework results
-            for (let j = 0; j < this[_homeworkResults].length; j++){
+            for (let j = 0; j < _homeworkResults.length; j++){
                 let currentStudent = {};
-                currentStudent.topic = this[_homeworkResults][j].topic;
+                currentStudent.topic = _homeworkResults[j].topic;
                 //iterating through each homework result to add success to student
-                for (let k = 0; k < this[_homeworkResults][j].results.length; k++){
-                    if (this[_homeworkResults][j].results[k].email === currentStudentEmail){
-                        currentStudent.success = this[_homeworkResults][j].results[k].success;
+                for (let k = 0; k < _homeworkResults[j].results.length; k++){
+                    if (_homeworkResults[j].results[k].email === currentStudentEmail){
+                        currentStudent.success = _homeworkResults[j].results[k].success;
                     }
                 }
                 currentStudentHomeworksResults.push(currentStudent)
             }
-            console.log(`name: ${this[_studentsList][i].name}, email: ${this[_studentsList][i].email}`);
+            console.log(`name: ${_studentsList[i].name}, email: ${_studentsList[i].email}`);
             console.log(currentStudentHomeworksResults);
         }
     }
-    addHomeworkResult(homeworkResults){
-        this[_homeworkResults].push(homeworkResults);
+    this.addHomeworkResult = function(homeworkResults){
+        _homeworkResults.push(homeworkResults);
     }
-    printStudentsEligibleForTest(){
+    this.printStudentsEligibleForTest = function(){
         let currentStudentHomeworksResults = []
          //iterating through each student
-         for (let i = 0; i < this[_studentsList].length; i++){
-            let currentStudentEmail = this[_studentsList][i].email;
+         for (let i = 0; i < _studentsList.length; i++){
+            let currentStudentEmail = _studentsList[i].email;
             let currentStudent = {};
             currentStudent.failed = 0;
             //iterating through each homework results
-            for (let j = 0; j < this[_homeworkResults].length; j++){
+            for (let j = 0; j < _homeworkResults.length; j++){
                 //iterating through each homework result to add success to student
-                for (let k = 0; k < this[_homeworkResults][j].results.length; k++){
-                    if (this[_homeworkResults][j].results[k].email === currentStudentEmail){
-                        if(!this[_homeworkResults][j].results[k].success){
+                for (let k = 0; k < _homeworkResults[j].results.length; k++){
+                    if (_homeworkResults[j].results[k].email === currentStudentEmail){
+                        if(!_homeworkResults[j].results[k].success){
                             currentStudent.failed++;
                         }
                     }
                 }
 
             }
-            currentStudent.info = this[_studentsList][i];
-            console.log(currentStudent)
-            currentStudentHomeworksResults.push(currentStudent)
+            currentStudent.info = _studentsList[i];
+            currentStudentHomeworksResults.push(currentStudent);
         }
         let succesiveStudents = currentStudentHomeworksResults.filter(stud => {
-            return stud.failed <= this[_failedHomeworksLimit]
+            return stud.failed <= _failedHomeworksLimit;
         })
         succesiveStudents.map(stud => {
             console.log(`name: ${stud.info.name}, email: ${stud.info.email}`);
@@ -86,4 +87,5 @@ class FrontendLab {
 
     }
 
+}
 }
