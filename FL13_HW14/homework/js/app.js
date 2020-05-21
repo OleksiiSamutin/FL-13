@@ -46,10 +46,8 @@ class FrontendLab {
             _studentsList.forEach(stud => {
                 let failed = 0;
                 stud.getHomeworkResults().forEach(HW => {
-                    if (stud.getEmail() === HW.email){
-                      if (!HW.success){
-                        failed++;
-                    }
+                  if (!HW.success){
+                    failed++;
                   }
 
                 })
