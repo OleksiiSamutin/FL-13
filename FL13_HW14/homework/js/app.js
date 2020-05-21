@@ -11,7 +11,7 @@ class Student {
     return _email;
   }
   this.addHomeworkResult = function(topic, success) {
-    _homeworkResults.push({ topic, success });
+    return _homeworkResults.push({ topic, success });
   }
   this.getHomeworkResults = function() {
     return _homeworkResults;
@@ -27,11 +27,14 @@ class FrontendLab {
         })
         let _failedHomeworksLimit = failedLimit;
 
-        this.addHomeworkResult = function(homeworksResults){
-            _studentsList.forEach((stud,index) => {
-
-            stud.addHomeworkResult(homeworksResults.topic,homeworksResults.results[index].success);
-            })
+        this.addHomeworkResults = function(homeworksResults){
+            _studentsList.forEach(stud => {
+              homeworksResults.results.forEach(HW => {
+                if (stud.getEmail() === HW.email){
+                  stud.addHomeworkResult(homeworksResults.topic,HW.success);
+                }
+              })
+           })
         }
         this.printStudentsList = function(){
             _studentsList.forEach(stud => {
@@ -43,9 +46,12 @@ class FrontendLab {
             _studentsList.forEach(stud => {
                 let failed = 0;
                 stud.getHomeworkResults().forEach(HW => {
-                    if (!HW.success){
+                    if (stud.email === HW.email){
+                      if (!HW.success){
                         failed++;
                     }
+                  }
+
                 })
                 if (failed <= _failedHomeworksLimit){
                     console.log(`name: ${stud.getName()}, email: ${stud.getEmail()}`);
