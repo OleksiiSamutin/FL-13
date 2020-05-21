@@ -23,13 +23,14 @@ class Student {
 class FrontendLab {
     constructor(students,failedLimit){
         let _studentsList = students.map(stud => {
-            return new Student(stud.name, stud.email)
+            return new Student(stud.name, stud.email);
         })
         let _failedHomeworksLimit = failedLimit;
+
         this.addHomeworkResult = function(homeworksResults){
             _studentsList.forEach((stud,index) => {
 
-            stud.addHomeworkResult(homeworksResults.topic,homeworksResults.results[index].success)
+            stud.addHomeworkResult(homeworksResults.topic,homeworksResults.results[index].success);
             })
         }
         this.printStudentsList = function(){
@@ -47,7 +48,7 @@ class FrontendLab {
                     }
                 })
                 if (failed <= _failedHomeworksLimit){
-                    console.log(`name: ${stud.getName()}, email: ${stud.getEmail()}`)
+                    console.log(`name: ${stud.getName()}, email: ${stud.getEmail()}`);
                 }
             })
         }
